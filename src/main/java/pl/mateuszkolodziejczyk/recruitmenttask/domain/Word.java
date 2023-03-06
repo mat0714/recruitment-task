@@ -11,7 +11,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Word implements Comparable<Word> {
+public class Word {
 
     private String name;
     private int occurrence;
@@ -40,10 +40,5 @@ public class Word implements Comparable<Word> {
     @Override
     public int hashCode() {
         return Objects.hash(getName());
-    }
-
-    @Override
-    public int compareTo(Word word) {
-        return this.name.compareTo(word.getName());
     }
 }

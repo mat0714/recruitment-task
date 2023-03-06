@@ -8,8 +8,8 @@ import pl.mateuszkolodziejczyk.recruitmenttask.domain.Word;
 import pl.mateuszkolodziejczyk.recruitmenttask.domain.WordDetails;
 import pl.mateuszkolodziejczyk.recruitmenttask.service.TextService;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/text")
@@ -24,9 +24,9 @@ public class TextApi {
         return ResponseEntity.status(HttpStatus.OK).body(words);
     }
 
-    @PostMapping("/set")
-    public ResponseEntity<Set<Word>> analyzeToSet(@RequestBody String str) {
-        Set<Word> words = textService.analyzeToSet(str);
+    @PostMapping("/list")
+    public ResponseEntity<List<Word>> analyzeToList(@RequestBody String str) {
+        List<Word> words = textService.analyzeToList(str);
         return ResponseEntity.status(HttpStatus.OK).body(words);
     }
 }

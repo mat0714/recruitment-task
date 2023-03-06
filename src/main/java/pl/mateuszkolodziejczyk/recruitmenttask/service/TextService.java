@@ -29,24 +29,25 @@ public class TextService {
         return wordMap;
     }
 
-    public Set<Word> analyzeToSet(String str) {
+    public List<Word> analyzeToList(String str) {
         String[] splitStr = splitString(str);
-        Set<Word> wordsSet = new TreeSet<>();
+        List<Word> wordsList = new ArrayList<>();
 
         for (int i = 0; i < splitStr.length; i++) {
             String singleString = splitStr[i];
             Word word = new Word(singleString);
-            if(!wordsSet.contains(word)) {
+            if(!wordsList.contains(word)) {
                 word.incrementOccurrenceByOne();
                 word.addPlace(i + 1);
-                wordsSet.add(word);
+                wordsList.add(word);
             } else {
-                Word wordToChange = wordsSet.stream().filter(w -> w.equals(word)).findFirst().get();
+                Word wordToChange = wordsList.stream().filter(w -> w.equals(word)).findFirst().get();
                 wordToChange.incrementOccurrenceByOne();
                 wordToChange.addPlace(i + 1);
             }
         }
-        return wordsSet;
+        Collections.sort(wordsList, Comparator.comparing(Word::getName, String.CASE_INSENSITIVE_ORDER));
+        return wordsList;
     }
 
     private String[] splitString(String str) {
